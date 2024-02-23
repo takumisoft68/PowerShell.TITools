@@ -5,36 +5,73 @@ online version:
 schema: 2.0.0
 ---
 
-# Test-SampleCmdlet
+# Get-Tree
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Show directories/files Tree-diagram.
 
 ## SYNTAX
 
 ```
-Test-SampleCmdlet [-FavoriteNumber] <Int32> [[-FavoritePet] <String>] [<CommonParameters>]
+Get-Tree [-DirPath] <String> [[-Deco] <DecorationType>] [[-DirOnly] <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+Show directories/files Tree-diagram.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-Tree .
 ```
 
-{{ Add example description here }}
+Get a tree diagram from current directory.
 
 ## PARAMETERS
 
-### -FavoriteNumber
-{{ Fill FavoriteNumber Description }}
+### -Deco
+
+Select a decoration type.
 
 ```yaml
-Type: Int32
+Type: DecorationType
+Parameter Sets: (All)
+Aliases:
+Accepted values: Default, DotLine, Short, Ascii, AsciiWide, AsciiShort, AsciiVeryShort, AsciiUltraShort
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -DirOnly
+
+Show only directories or not.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -DirPath
+
+Root directory path.
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -45,35 +82,20 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -FavoritePet
-{{ Fill FavoritePet Description }}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-Accepted values: Cat, Dog, Horse
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### System.Int32
-
 ### System.String
+
+### TIToolsDll.Tree.DecorationType
+
+### System.Boolean
 
 ## OUTPUTS
 
-### TITools.FavoriteStuff
-
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

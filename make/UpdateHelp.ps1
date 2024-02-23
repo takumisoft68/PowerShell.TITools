@@ -1,26 +1,17 @@
-﻿# モジュールの更新をヘルプ markdown へ自動的に取り込みたいときに実行するスクリプト
-# 先に build.bat を実行しておく必要がある
-# 更新内容が良い感じに取り込まれて markdown が上書きされる
+﻿# モジュールに新たにコマンドを追加したときに help ファイルのひな型を作成するスクリプト
+# 事前に build.bat を実行しておく必要がある
+# 事前に platyps をインストールしておく必要がある
+# 出力先の .\output\temp\help ディレクトリは空または削除しておかないとエラーする
 Write-Host "Start help file updating."
 $module='TITools'
 
 Import-Module "$PSScriptRoot\..\Output\$module\$module.psd1"
 
-cd $PSScriptRoot
-cd ../
+cd "$PSScriptRoot\..\"
+Write-Host "Processing..."
+New-MarkdownAboutHelp -OutputFolder ".\src\help" -AboutName $module
+Update-MarkdownHelpModule -Path ".\src\help"
 
-try
-{
-    Get-InstalledModule platyps -ErrorAction Stop | Out-Null
-}
-catch
-{
-    Write-Host "Install Platyps."
-    Install-PackageProvider -Name NuGet -Scope CurrentUser -MinimumVersion 2.8.5.201 -Force -Verbose
-    Install-Module platyps -Scope CurrentUser -Force -Verbose
-    Write-Host "Platyps install completed."
- }
 
- Write-Host "Processing..."
- Update-MarkdownHelp -Path ".\src\help"
- Write-Host "Help markdown file update is completed."
+New-ExternalHelp -Path ".\src\help" -OutputPath ".\output\$module" -Force
+Write-Host "Help markdown file update is completed."

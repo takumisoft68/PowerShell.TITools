@@ -12,7 +12,7 @@ Describe "Test1" {
             $true | Should Be $true
         }
         It "2つ目のテスト" {
-            Resolve-MyCmdlet aaa | Should Be aaaa
+            Resolve-TIToolsCmdlet aaa | Should Be aaaa
         }
     }
 }
